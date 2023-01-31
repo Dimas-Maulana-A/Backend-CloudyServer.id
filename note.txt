@@ -1,0 +1,61 @@
+admin.cloudhost.org
+
+role (selesai)
+-name
+
+admin (selesai)
+-name
+-username
+-password
+-role_id
+
+
+
+blog.cloudhost.org
+
+category Blog (selesai)
+-name
+
+BLOG (selesai)
+-title
+-image
+-content
+-category
+-admin
+
+
+cloudhost.org
+-
+
+
+store.cloudhost.org
+
+category store (selesai)
+-name
+
+product (Selesai)
+-name
+-image
+-description
+-category
+-price
+
+client (Selesai)
+-name
+-username
+-password
+-phone
+-email
+-address
+
+transaksi
+-client_id
+-status
+-admin_id
+-metode_pembayaran
+
+detail_transaksi
+-transaksi_id
+-product_id
+-total_barang
+-total_price
