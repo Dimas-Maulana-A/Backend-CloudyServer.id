@@ -25,4 +25,10 @@ app.use('/client', Client)
 const Product = require('./product/product.router')
 app.use('/product', Product)
 
+const Transaksi = require('./transaksi/transaksi.router')
+app.use('/transaksi', Transaksi)
+
+const Details = require('./details_transaksi/details.router')
+app.use('/details', Details)
+
 module.exports = app

@@ -2,7 +2,7 @@
   "development": {
     "username": "pluton",
     "password": "pluton",
-    "database": "cloudhost_db",
+    "database": "cloudyserverdb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

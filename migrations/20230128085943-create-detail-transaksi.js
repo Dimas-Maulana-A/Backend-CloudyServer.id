@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       transaksi_id: {
+        allowNull: false,
         type: Sequelize.UUID,
         references: {
           model: "transaksi",

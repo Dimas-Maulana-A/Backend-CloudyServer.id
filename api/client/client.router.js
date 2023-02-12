@@ -1,20 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const {
-    controllerGetClient,
-    controllerGetClientById,
-    controllerAddClient,
-    controllerUpdateClient,
-    controllerDeleteClient,
-    controllerLoginClient
-} = require('./client.controller');
+  controllerGetClient,
+  controllerGetClientById,
+  controllerAddClient,
+  controllerUpdateClient,
+  controllerDeleteClient,
+  controllerLoginClient,
+} = require("./client.controller");
+const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-router.post('/login', controllerLoginClient)
-router.get('/', controllerGetClient)
-router.get('/:id', controllerGetClientById)
-router.post('/', controllerAddClient)
-router.put('/:id', controllerUpdateClient)
-router.delete('/:id', controllerDeleteClient)
+router.post("/login", controllerLoginClient);
+router.get("/", AuthAdmin, controllerGetClient);
+router.get("/:id", AuthAdmin, controllerGetClientById);
+router.post("/", AuthAdmin, controllerAddClient);
+router.put("/:id", AuthAdmin, controllerUpdateClient);
+router.delete("/:id", AuthAdmin, controllerDeleteClient);
 
-
-module.exports = router
+module.exports = router;

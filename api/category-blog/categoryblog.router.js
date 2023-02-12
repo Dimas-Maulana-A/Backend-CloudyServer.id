@@ -7,12 +7,12 @@ const {
     controllerUpdateCategoryBlog,
     controllerDeleteCategoryBlog
 } = require('./categoryblog.controller')
+const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-
-router.get('/', controllerGetCategoryBlog)
-router.get('/:id', controllerGetCategoryBlogById)
-router.post('/', controllerAddCategoryBlog)
-router.put('/:id', controllerUpdateCategoryBlog)
-router.delete('/:id', controllerDeleteCategoryBlog)
+router.get('/',AuthAdmin, controllerGetCategoryBlog)
+router.get('/:id', AuthAdmin, controllerGetCategoryBlogById)
+router.post('/', AuthAdmin, controllerAddCategoryBlog)
+router.put('/:id', AuthAdmin, controllerUpdateCategoryBlog)
+router.delete('/:id', AuthAdmin, controllerDeleteCategoryBlog)
 
 module.exports = router

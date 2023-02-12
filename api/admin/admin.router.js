@@ -1,20 +1,21 @@
-const express = require('express');
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const {
-    controllerGetAdmin,
-    controllerGetAdminById,
-    controllerAddAdmin,
-    controllerUpdateAdmin,
-    controllerDeleteAdmin,
-    controllerLoginAdmin
-} = require('./admin.controller')
+  controllerGetAdmin,
+  controllerGetAdminById,
+  controllerAddAdmin,
+  controllerUpdateAdmin,
+  controllerDeleteAdmin,
+  controllerLoginAdmin,
+} = require("./admin.controller");
 
+const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-router.get('/', controllerGetAdmin)
-router.get('/:id', controllerGetAdminById)
-router.post('/', controllerAddAdmin)
-router.put('/:id', controllerUpdateAdmin)
-router.delete('/:id', controllerDeleteAdmin)
-router.post('/login', controllerLoginAdmin)
+router.get("/", AuthAdmin, controllerGetAdmin);
+router.get("/:id", AuthAdmin, controllerGetAdminById);
+router.post("/", AuthAdmin, controllerAddAdmin);
+router.put("/:id", AuthAdmin, controllerUpdateAdmin);
+router.delete("/:id", AuthAdmin, controllerDeleteAdmin);
+router.post("/login", controllerLoginAdmin);
 
-module.exports = router
+module.exports = router;

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       this.hasMany(models.transaksi, {
-        foreignKey: "product_transaksi",
+        foreignKey: "id",
         as: "products_transaksi"
       })
     }

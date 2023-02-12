@@ -1,18 +1,18 @@
-const express = require('express');
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const {
-    controllerGetRole,
-    controllerGetRoleById,
-    controllerAddRole,
-    controllerUpdateRole,
-    controllerDeleteRole
-} = require('./role.controller')
+  controllerGetRole,
+  controllerGetRoleById,
+  controllerAddRole,
+  controllerUpdateRole,
+  controllerDeleteRole,
+} = require("./role.controller");
+const AuthAdmin = require("./../../middleware/AuthAdmin");
 
+router.get("/", AuthAdmin, controllerGetRole);
+router.get("/:id", AuthAdmin, controllerGetRoleById);
+router.post("/", AuthAdmin, controllerAddRole);
+router.put("/:id", AuthAdmin, controllerUpdateRole);
+router.delete("/:id", AuthAdmin, controllerDeleteRole);
 
-router.get('/', controllerGetRole)
-router.get('/:id', controllerGetRoleById)
-router.post('/', controllerAddRole)
-router.put('/:id', controllerUpdateRole)
-router.delete('/:id', controllerDeleteRole)
-
-module.exports = router
+module.exports = router;
