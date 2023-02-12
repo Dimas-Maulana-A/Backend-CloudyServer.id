@@ -9,7 +9,7 @@ const {
 } = require("./categorystore.controller");
 const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-router.get("/", AuthAdmin, controllerGetCategoryStore);
+router.get("/", controllerGetCategoryStore);
 router.get("/:id", AuthAdmin, controllerGetCategoryStoreById);
 router.post("/", AuthAdmin, controllerAddCategoryStore);
 router.put("/:id", AuthAdmin, controllerUpdateCategoryStore);

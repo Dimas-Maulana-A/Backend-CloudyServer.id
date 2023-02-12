@@ -1,5 +1,6 @@
 const models = require("./../../models/index");
 const product = models.product;
+const AuthAdmin = require("./../../middleware/AuthAdmin");
 
 const multer = require("multer");
 const express = require("express");
@@ -66,7 +67,7 @@ app.get("/:id", async (req, res) => {
     });
 });
 
-app.post("/", upload.single("image"), async (req, res) => {
+app.post("/",AuthAdmin, upload.single("image"), async (req, res) => {
   if (req.file) {
     let { name, description, category, price } = req.body;
     let data = {
@@ -109,7 +110,7 @@ app.post("/", upload.single("image"), async (req, res) => {
   }
 });
 
-app.put("/:id", upload.single("image"), async (req, res) => {
+app.put("/:id", AuthAdmin, upload.single("image"), async (req, res) => {
   if (req.file) {
     let { id } = req.params;
     let results = await product.findOne({ where: { id: id } });
@@ -172,7 +173,7 @@ app.put("/:id", upload.single("image"), async (req, res) => {
   }
 });
 
-app.delete("/:id", async (req, res) => {
+app.delete("/:id", AuthAdmin, async (req, res) => {
   try {
     let { id } = req.params;
     let results = await product.findOne({ where: {id: id} });

@@ -9,7 +9,7 @@ const {
 } = require('./categoryblog.controller')
 const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-router.get('/',AuthAdmin, controllerGetCategoryBlog)
+router.get('/', controllerGetCategoryBlog)
 router.get('/:id', AuthAdmin, controllerGetCategoryBlogById)
 router.post('/', AuthAdmin, controllerAddCategoryBlog)
 router.put('/:id', AuthAdmin, controllerUpdateCategoryBlog)
