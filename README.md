@@ -4,12 +4,8 @@
 
 ### Get Started
 
-```
-npm install
-```
+### `npm install`
 
 ### Start Server
 
-```
-yarn start
-```
+### `yarn start`
