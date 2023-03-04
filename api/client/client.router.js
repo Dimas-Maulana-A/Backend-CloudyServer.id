@@ -6,11 +6,11 @@ const {
   controllerAddClient,
   controllerUpdateClient,
   controllerDeleteClient,
-  controllerLoginClient,
+  controllerLoginClient
 } = require("./client.controller");
 const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-router.post("/login", controllerLoginClient);
+router.post("/login", AuthAdmin, controllerLoginClient);
 router.get("/", AuthAdmin, controllerGetClient);
 router.get("/:id", AuthAdmin, controllerGetClientById);
 router.post("/", AuthAdmin, controllerAddClient);
