@@ -108,44 +108,37 @@ module.exports = {
   },
   controllerUpdateDetails: async (req, res) => {
     try {
-        for (let i = req.body.length; i > req.body.length - 1; req.body--) {
-          try {
-            req.body.map(async item => {
-              const getPrice = await models.product.findOne({
-                where: {
-                  id: item.product_id
-                }
-              });
-              const data = {
-                transaksi_id: item.transaksi_id,
-                product_id: item.product_id,
-                total_barang: item.total_barang,
-                total_price: getPrice.price * item.total_barang
-              };
-  
-              await details
-                .update(data, {
-                    where: {
-                        id: req.params.id
-                    }
-                })
-                .then(result => {
-                  res.status(200).end();
-                })
-                .catch(err => {
-                  console.log(err);
-                });
-            });
-            res.json({
-              data: req.body
-            });
-          } catch (error) {
-            console.log(error);
+      req.body.forEach(async dataDetails => {
+        const getPrice = await models.product.findOne({
+          where: {
+            id: dataDetails.product_id
           }
-        }
-      } catch (error) {
-        console.log(error);
-      }
+        });
+        const data = {
+          transaksi_id: dataDetails.transaksi_id,
+          product_id: dataDetails.product_id,
+          total_barang: dataDetails.total_barang,
+          total_price: getPrice.price * dataDetails.total_barang
+        };
+
+        await details
+          .update(data, {
+            where: {
+              id: req.params.id
+            }
+          })
+          .then(result => {
+            res.status(200).json({
+              data: req.body
+            }).end();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   },
   controllerDeleteDetails: async (req, res) => {
     await details

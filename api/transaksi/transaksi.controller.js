@@ -149,45 +149,29 @@ module.exports = {
         res.json({
           data: req.body
         });
-        // untuk pengganti sequelize bulkCreate: karena total price dan transaksi id mendapatkan value dari luar request body
-
         try {
-          for (
-            let i = req.body.details.length;
-            i > req.body.details.length - 1;
-            i--
-          ) {
-            try {
-              req.body.details.map(async item => {
-                try {
-                  let getPrice = await models.product.findOne({
-                    where: {
-                      id: item.product_id
-                    }
-                  });
-                  let datas = {
-                    transaksi_id: result.id,
-                    product_id: item.product_id,
-                    total_barang: item.total_barang,
-                    total_price: item.total_barang * getPrice.price
-                  };
+          req.body.details.forEach(async detailsData => {
+            let getPrice = await models.product.findOne({
+              where: {
+                id: detailsData.product_id
+              }
+            });
+            let datas = {
+              transaksi_id: result.id,
+              product_id: detailsData.product_id,
+              total_barang: detailsData.total_barang,
+              total_price: detailsData.total_barang * getPrice.price
+            };
 
-                  models.detail_transaksi
-                    .create(datas)
-                    .then(results => {
-                      res.status(200).end();
-                    })
-                    .catch(err => {
-                      console.log(err);
-                    });
-                } catch (error) {
-                  console.log(error);
-                }
+            models.detail_transaksi
+              .create(datas)
+              .then(results => {
+                res.status(200).end();
+              })
+              .catch(err => {
+                console.log(err);
               });
-            } catch (error) {
-              console.log(error);
-            }
-          }
+          });
         } catch (error) {
           console.log(error);
         }
