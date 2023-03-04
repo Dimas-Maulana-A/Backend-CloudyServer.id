@@ -10,10 +10,10 @@ const {
 } = require("./details.controller.js");
 const AuthAdmin = require("./../../middleware/AuthAdmin");
 
-router.get("/",  controllerGetDetails);
-router.get("/:id",  controllerGetDetailsById);
-router.post("/",  controllerAddDetails);
-router.put("/:id",  controllerUpdateDetails);
-router.delete("/:id",  controllerDeleteDetails);
+router.get("/", AuthAdmin, controllerGetDetails);
+router.get("/:id", AuthAdmin, controllerGetDetailsById);
+router.post("/", AuthAdmin, controllerAddDetails);
+router.put("/:id", AuthAdmin, controllerUpdateDetails);
+router.delete("/:id", AuthAdmin, controllerDeleteDetails);
 
 module.exports = router;
